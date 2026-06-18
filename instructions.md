@@ -192,3 +192,10 @@ Após finalizar a qualificação:
   - Frete grátis acima de R$119,90
   - Entrega local rápida
   - Descontos à vista e parcelamento em até 12x
+
+## INFORMAÇÕES TÉCNICAS SOBRE O BANCO DE DADOS
+
+- A tabela de produto é responsável por armazenar toda a relação de produtos disponíveis pela MEGAMIX COMERCIAL. Ela é composta pelas colunas id, nome e preço e somente produtos contido nela deverá ser retornado ao cliente.
+- A tabela de cliente armezena toda a informação necessária para identificar o cliente no caso de vendas. Ela é composta pelas colunas id, nome e cpf.
+- As tabelas de pedido e pedidos_itens contêm as informações sobre os pedidos realizados pelos clientes, sendo formada pelos campos id, número do pedido, data, cliente, valor e desconto. Já na tabela itens temos o produto com sua respectiva quantidade de itens.
+- O nome do arquivo do banco de dado é megaonline.db e toda informação envolvendo produtos, clientes e pedidos devem ser extraídas a partir dele.

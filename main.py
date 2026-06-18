@@ -23,7 +23,8 @@ def read_markdown_file(file_path):
         print(f"An error occurred: {e}")
 
 
-db = PostgresDb(db_url="postgresql://postgres:agno@localhost:5432/curso_agno")
+db = PostgresDb(
+    db_url="postgresql://postgres:password@localhost:5432/curso_agno")
 
 md_instructions = read_markdown_file("instructions.md")
 
@@ -42,6 +43,8 @@ workbench = Agent(
     enable_user_memories=True,
     add_memories_to_context=True,
     add_knowledge_to_context=True,
+    debug_mode=True,
+    markdown=True
 )
 
 # Serve via AgentOS, get streaming, auth, session isolation, API endpoints
