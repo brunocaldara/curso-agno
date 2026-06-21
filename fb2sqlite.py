@@ -54,6 +54,7 @@ try:
     cur_sqlite = con_sqlite.cursor()
 
     criar_tabela_produto(cur_sqlite)
+    criar_tabela_cliente(cur_sqlite)
 
     con_fb = fdb.connect(
         database='localhost:/opt/firebird/examples/empbuild/dolphins.FDB',
@@ -70,6 +71,13 @@ try:
     produtos = cur_fb.fetchall()
 
     inserir_produtos(cur_sqlite, produtos)
+
+    cur_fb.execute(
+        'SELECT CLIENTECODIGO AS id, CLIENTENOME as nome, CLIENTECPF as cpf_cnpj FROM CLIENTE')
+
+    clientes = cur_fb.fetchall()
+
+    inserir_clientes(cur_sqlite, clientes)
 
     con_sqlite.commit()
     con_sqlite.close()

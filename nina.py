@@ -46,8 +46,16 @@ nina_comecial = Agent(
 agent_os = AgentOS(agents=[nina_comecial], tracing=True)
 app = agent_os.get_app()
 
+
+@app.post("/nina", tags=["Megamix Comercial"])
+async def teste(pergunta: str):
+    resposta = nina_comecial.run(pergunta)
+    mensagem = resposta.messages[-1]
+    return {"message": mensagem.content}
+
+
 if __name__ == "__main__":
-    agent_os.serve(app='nina:app', reload=True)
+    agent_os.serve(app='nina:app', host="0.0.0.0", port=7777, reload=True)
 
 # response = nina_comecial.run("Retorne todos os produtos que são lapiseira")
 # print(response.content)

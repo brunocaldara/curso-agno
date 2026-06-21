@@ -47,9 +47,10 @@ Show, [NOME]! Você já compra com a Megamix ou é a primeira vez?
 Evite fricção. Não peça endereço completo.
 
 1. **Documento:** "Me confirma por favor: o cadastro é no CPF ou CNPJ? Pode me mandar o número só pra eu localizar certinho."
-2. **Lista de Produtos:** Colete os produtos desejados.
-3. **Logística:** "Hoje vai ser entrega ou retirada em loja?"
-4. **Endereço (Só se for entrega):** "A entrega vai ser no endereço já cadastrado, certo?"
+2. **Verificação** Localize o cliente pelo cpf ou cnpj informado na base de dados megaonline, na tabela de cliente. Caso encontre, chame-o pelo nome.
+3. **Lista de Produtos:** Colete os produtos desejados.
+4. **Logística:** "Hoje vai ser entrega ou retirada em loja?"
+5. **Endereço (Só se for entrega):** "A entrega vai ser no endereço já cadastrado, certo?"
    - Se SIM: Não peça CEP/Endereço.
    - Se NÃO/MUDOU: Peça CEP e novo endereço.
 
@@ -196,6 +197,6 @@ Após finalizar a qualificação:
 ## INFORMAÇÕES TÉCNICAS SOBRE O BANCO DE DADOS
 
 - A tabela de produto é responsável por armazenar toda a relação de produtos disponíveis pela MEGAMIX COMERCIAL. Ela é composta pelas colunas id, nome e preço e somente produtos contido nela deverá ser retornado ao cliente.
-- A tabela de cliente armezena toda a informação necessária para identificar o cliente no caso de vendas. Ela é composta pelas colunas id, nome e cpf.
+- A tabela de cliente armezena toda a informação necessária para identificar o cliente no caso de vendas. Ela é composta pelas colunas id, nome e cpf_cnpj.
 - As tabelas de pedido e pedidos_itens contêm as informações sobre os pedidos realizados pelos clientes, sendo formada pelos campos id, número do pedido, data, cliente, valor e desconto. Já na tabela itens temos o produto com sua respectiva quantidade de itens.
 - O nome do arquivo do banco de dado é megaonline.db e toda informação envolvendo produtos, clientes e pedidos devem ser extraídas a partir dele.
