@@ -13,7 +13,8 @@ try:
             CREATE TABLE IF NOT EXISTS produto (
                 id INTEGER PRIMARY KEY,
                 nome TEXT,
-                preco REAL
+                preco REAL,
+                saldo REAL
             )
         ''')
 
@@ -30,10 +31,10 @@ try:
         for produto in produtos:
             id = produto[0]
             nome = str(produto[1]).replace('\x00', '')
-            preco = 0.0
-
+            preco = float(produto[2])
+            saldo = float(produto[3])
             cur_sqlite.execute(
-                "INSERT INTO produto (id, nome, preco) VALUES (?, ?, ?)", (id, nome, preco))
+                "INSERT INTO produto (id, nome, preco, saldo) VALUES (?, ?, ?, ?)", (id, nome, preco, saldo))
 
     def inserir_clientes(cur_sqlite, clientes):
         for cliente in clientes:
@@ -66,7 +67,11 @@ try:
     cur_fb = con_fb.cursor()
 
     cur_fb.execute(
-        'SELECT PRODUTOCODIGO AS id, PRODUTONOME as nome FROM PRODUTO')
+        '''
+            SELECT PRODUTOCODIGO AS id, PRODUTONOME as nome, 0.0 AS preco,
+            (SELECT R_SALDO FROM SALDO_DIA(PRODUTOCODIGO, 1, 1, CURRENT_DATE)) AS saldo
+            FROM PRODUTO
+        ''')
 
     produtos = cur_fb.fetchall()
 
