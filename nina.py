@@ -88,6 +88,7 @@ async def teste(body: dict = Body(...)):
         conversation = message['conversation']
 
         print(f'Received message: {conversation}')
+        print(f'From number: {number}')
 
         resposta = nina_comecial.run(conversation, user_id=number)
         mensagem = resposta.messages[-1]
