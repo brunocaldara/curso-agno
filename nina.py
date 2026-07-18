@@ -13,8 +13,8 @@ from fastapi import Body
 
 load_dotenv()
 
-ZPRO_API_TOKEN = os.getenv('ZPRO_API_KEY')
-ZPRO_API_URL = os.getenv('ZPRO_API_URL')
+ZPRO_API_TOKEN_NINA = os.getenv('ZPRO_API_KEY_NINA')
+ZPRO_API_URL_NINA = os.getenv('ZPRO_API_URL_NINA')
 
 
 db_url = "sqlite:///megaonline.db"
@@ -96,7 +96,7 @@ async def teste(body: dict = Body(...)):
         timeout = 10
 
         headers = {
-            'Authorization': f'Bearer {ZPRO_API_TOKEN}',
+            'Authorization': f'Bearer {ZPRO_API_TOKEN_NINA}',
             'Content-Type': 'application/json'
         }
 
@@ -109,13 +109,9 @@ async def teste(body: dict = Body(...)):
         }
 
         response = requests.post(
-            ZPRO_API_URL, json=payload, headers=headers, timeout=timeout)
+            ZPRO_API_URL_NINA, json=payload, headers=headers, timeout=timeout)
 
         return {'status': response.status_code}
-
-        # Authorization: Bearer 6f3ad36d380c18347729d1e2c0ef944ae2d9e098a4bf314951f49f26b7b9708d
-        # https://api.megaonline.app.br/v2/api/external/05d87768-684f-4b3e-944b-72583def239c
-
 
 if __name__ == "__main__":
     agent_os.serve(app='nina:app', host="0.0.0.0", port=7777, reload=True)
